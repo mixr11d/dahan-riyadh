@@ -18,23 +18,29 @@
 <meta name="twitter:title" content="محترف الدهانات الرياض">
 <meta name="twitter:description" content="دهانات داخلية وخارجية بجودة عالية في الرياض — 0553433546">
 
-<!-- Google Ads - تتبع الاتصال والواتساب -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<!-- Google Ads - تتبع تلقائي لكل الأزرار -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17945698650"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments)}
 gtag('js', new Date());
-gtag('config', 'AW-XXXXXXXXX');
+gtag('config', 'AW-17945698650');
 
-const G_ID = 'AW-XXXXXXXXX';
-const C_L = 'xxxxxxxxxx'; // لابل الاتصال
-const W_L = 'xxxxxxxxxx'; // لابل الواتساب
+const G_ID='AW-17945698650';
+const C_L='sNtxCPWDzb0cENrClu1C';
+const W_L='m--ICPiDzb0cENrClu1C';
 
-// ── لا تعدّل ما بعد هذا السطر ──
-function trackCall(type) {
-  var label = (type === 'whatsapp') ? W_L : C_L;
-  gtag('event', 'conversion', { send_to: G_ID + '/' + label });
-}
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a');
+  if(!a) return;
+  var href = a.href || '';
+  if(href.startsWith('tel:')){
+    gtag('event','conversion',{'send_to':G_ID+'/'+C_L,'value':50.0,'currency':'SAR'});
+  }
+  if(href.includes('wa.me') || href.includes('whatsapp')){
+    gtag('event','conversion',{'send_to':G_ID+'/'+W_L,'value':40.0,'currency':'SAR'});
+  }
+}, true);
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -767,7 +773,7 @@ footer{
 <body>
 
 <div class="promo-bar" id="promoBar">
-  <a href="tel:0553433546" onclick="trackCall('phone')">
+  <a href="tel:0553433546">
     <span class="pulse">🎉</span>
     <span>خصم خاص للمتصلين الجدد — اتصل الآن واحصل على عرض مميز!</span>
     <span>📞 0553433546</span>
@@ -800,8 +806,8 @@ footer{
   <a href="#why" onclick="closeMenu()">لماذا نحن</a>
   <a href="#gallery" onclick="closeMenu()">أعمالنا</a>
   <a href="#reviews" onclick="closeMenu()">آراء العملاء</a>
-  <a href="tel:0553433546" onclick="trackCall('phone');closeMenu()" class="btn btn-gold">📞 اتصل الآن</a>
-  <a href="https://wa.me/966553433546" onclick="trackCall('whatsapp');closeMenu()" class="btn btn-wa">💬 واتساب</a>
+  <a href="tel:0553433546" onclick="closeMenu()" class="btn btn-gold">📞 اتصل الآن</a>
+  <a href="https://wa.me/966553433546" onclick="closeMenu()" class="btn btn-wa">💬 واتساب</a>
 </div>
 
 <!-- ====== HERO ====== -->
@@ -815,10 +821,10 @@ footer{
       <div class="hero-badge" style="background:rgba(220,50,50,.12);border-color:rgba(220,50,50,.3);color:#ff8080;margin-bottom:.5rem">
         ⏳ عروض محدودة هذا الشهر — احجز موعدك الآن
       </div>
-      <a href="tel:0553433546" onclick="trackCall('phone')" class="hero-phone">
-        <span class="ph-ico">📞</span>
-        <span>0553433546</span>
-      </a>
+      <a href="tel:0553433546" class="hero-phone">
+  <span class="ph-ico">📞</span>
+  <span>0553433546</span>
+</a>
       <h1>
         نحوّل جدرانك<br>
         إلى <span class="gold-text">تحفة فنية</span>
@@ -828,10 +834,10 @@ footer{
         نلتزم بأعلى معايير الجودة ونضمن رضاك التام
       </p>
       <div class="hero-btns">
-        <a href="https://wa.me/966553433546" onclick="trackCall('whatsapp')" class="btn btn-wa">
+        <a href="https://wa.me/966553433546" class="btn btn-wa">
           <span>💬</span> تواصل عبر واتساب
         </a>
-        <a href="tel:0553433546" onclick="trackCall('phone')" class="btn btn-gold">
+        <a href="tel:0553433546" class="btn btn-gold">
           <span>📞</span> اتصل مباشرة
         </a>
         <a href="#services" class="btn btn-ghost">
@@ -958,7 +964,7 @@ footer{
         <p class="color-note">آلاف الألوان المتاحة — نساعدك باختيار الدرجة المثالية التي تناسب ذوقك وديكور مكانك</p>
         <div class="color-action">
           <span>🔍 استشارة مجانية</span>
-          <a href="https://wa.me/966553433546" onclick="trackCall('whatsapp')" class="btn btn-gold" style="padding:.5rem 1.1rem;font-size:.85rem">تواصل الآن</a>
+          <a href="https://wa.me/966553433546" class="btn btn-gold" style="padding:.5rem 1.1rem;font-size:.85rem">تواصل الآن</a>
         </div>
       </div>
     </div>
@@ -973,7 +979,7 @@ footer{
         <div class="sec-label">أعمالنا</div>
         <h2 class="sec-title">نماذج من<br>مشاريعنا المنجزة</h2>
       </div>
-      <a href="https://wa.me/966553433546" onclick="trackCall('whatsapp')" class="btn btn-ghost">شاهد المزيد ←</a>
+      <a href="https://wa.me/966553433546" class="btn btn-ghost">شاهد المزيد ←</a>
     </div>
     <div class="gallery-grid reveal">
       <div class="gi gi1">
@@ -1063,10 +1069,10 @@ footer{
       <p>تواصل معنا اليوم للحصول على معاينة ومشورة مجانية بدون أي التزام</p>
       <div class="phone-big">📞 0553433546</div>
       <div class="cta-btns">
-        <a href="https://wa.me/966553433546" onclick="trackCall('whatsapp')" class="btn btn-wa">
+        <a href="https://wa.me/966553433546" class="btn btn-wa">
           <span>💬</span> راسلنا على واتساب
         </a>
-        <a href="tel:0553433546" onclick="trackCall('phone')" class="btn btn-gold">
+        <a href="tel:0553433546" class="btn btn-gold">
           <span>📲</span> اتصل مباشرة الآن
         </a>
       </div>
@@ -1104,21 +1110,21 @@ footer{
 
 <!-- MOBILE STICKY CTA -->
 <div class="mob-cta">
-  <a href="tel:0553433546" onclick="trackCall('phone')" class="mc-call">
+  <a href="tel:0553433546" class="mc-call">
     📞 اتصل الآن
   </a>
-  <a href="https://wa.me/966553433546" onclick="trackCall('whatsapp')" class="mc-wa">
+  <a href="https://wa.me/966553433546" class="mc-wa">
     💬 واتساب
   </a>
 </div>
 
 <!-- ====== FLOATING BUTTONS ====== -->
 <div class="float-right">
-  <a href="https://wa.me/966553433546" onclick="trackCall('whatsapp')" class="float-btn float-wa-btn">
+  <a href="https://wa.me/966553433546" class="float-btn float-wa-btn">
     <span>💬</span>
     <span class="float-tooltip">تواصل واتساب</span>
   </a>
-  <a href="tel:0553433546" onclick="trackCall('phone')" class="float-btn float-call-btn">
+  <a href="tel:0553433546" class="float-btn float-call-btn">
     <span>📞</span>
     <span class="float-tooltip">اتصل الآن</span>
   </a>

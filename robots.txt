@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mixr11d.github.io/dahan-riyadh/sitemap.xml
+Sitemap: https://dahan-riyadh.pages.dev//sitemap.xml

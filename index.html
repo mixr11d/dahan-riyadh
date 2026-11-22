@@ -20,7 +20,7 @@
 <meta name="twitter:title" content="محترف الدهانات الرياض">
 <meta name="twitter:description" content="دهانات داخلية وخارجية بجودة عالية في الرياض — 0507019346">
 
-<!-- Google Ads Tag & Conversion Tracking -->
+<!-- Google tag (gtag.js) - Google Ads -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18587167988"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -29,33 +29,36 @@ gtag('js', new Date());
 gtag('config', 'AW-18587167988');
 
 // =========================================================================
-// إعدادات أكواد وتسميات الإحالات الناجحة (Google Ads Conversion Labels)
+// إعدادات وتسميات الإحالات الناجحة الرسمية
 // =========================================================================
 const G_ID = 'AW-18587167988';
-const C_L  = '6Eu4CNmyzrwdEPTZhp9F'; // 1) لابل النقر على رقم الاتصال
-const W_L  = 'NtQHCNyyzrwdEPTZhp9F'; // 2) لابل النقر على الواتساب المباشر
-const F_L  = 'E38uCPiF1bwdEPTZhp9F';  
+const C_L  = '6Eu4CNmyzrwdEPTZhp9F'; // لابل الاتصال
+const W_L  = 'NtQHCNyyzrwdEPTZhp9F'; // لابل الواتساب المباشر
+const F_L  = 'E38uCPiF1bwdEPTZhp9F'; // لابل النموذج
 
-// تتبع النقر على أزرار الاتصال والواتساب مع استبعاد رقم المطور
-document.addEventListener('click', function(e){
-  var a = e.target.closest('a');
-  if(!a) return;
-  var href = a.href || '';
-  
-  // استبعاد تتبع رقم المطور
-  if(href.includes('0578539687') || href.includes('966578539687')) {
-    return;
+// دالة تسجيل تحويل الاتصال المباشر
+function trackCall(url) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+      'send_to': G_ID + '/' + C_L,
+      'value': 100.0,
+      'currency': 'SAR'
+    });
   }
-  
-  // إحالة الاتصال
-  if(href.startsWith('tel:')){
-    gtag('event','conversion',{'send_to': G_ID+'/'+C_L, 'value': 100.0, 'currency': 'SAR'});
+  return true;
+}
+
+// دالة تسجيل تحويل الواتساب المباشر
+function trackWhatsApp(url) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+      'send_to': G_ID + '/' + W_L,
+      'value': 80.0,
+      'currency': 'SAR'
+    });
   }
-  // إحالة الواتساب المباشر
-  if(href.includes('wa.me') || href.includes('whatsapp')){
-    gtag('event','conversion',{'send_to': G_ID+'/'+W_L, 'value': 80.0, 'currency': 'SAR'});
-  }
-}, true);
+  return true;
+}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -232,7 +235,7 @@ nav{
   width:100%;padding:.85rem 1rem;
   background:#12111b;border:1px solid var(--border);
   border-radius:10px;color:#fff;font-family:inherit;
-  font-size:16px; /* يمنع الزوم التلقائي في أجهزة الآيفون */
+  font-size:16px;
   outline:none;
 }
 .f-control:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,146,42,.2)}
@@ -427,7 +430,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
 
 <!-- شريط الخصم الترويجي -->
 <div class="promo-bar" id="promoBar">
-  <a href="tel:0507019346">
+  <a href="tel:0507019346" onclick="trackCall(this.href)">
     <span class="pulse">🎉</span>
     <span>خصم خاص للمتصلين الجدد — احصل على معاينة فورية مجانية!</span>
     <span>📞 0507019346</span>
@@ -446,7 +449,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
     <li><a href="#why">لماذا نحن</a></li>
     <li><a href="#gallery">أعمالنا</a></li>
     <li><a href="#reviews">آراء العملاء</a></li>
-    <li><a href="tel:0507019346" class="nav-cta">اتصل الآن</a></li>
+    <li><a href="tel:0507019346" onclick="trackCall(this.href)" class="nav-cta">اتصل الآن</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()" aria-label="القائمة">
     <span></span><span></span><span></span>
@@ -459,8 +462,8 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
   <a href="#why" onclick="closeMenu()">لماذا نحن</a>
   <a href="#gallery" onclick="closeMenu()">أعمالنا</a>
   <a href="#reviews" onclick="closeMenu()">آراء العملاء</a>
-  <a href="tel:0507019346" onclick="closeMenu()" class="btn btn-gold" style="width:200px">📞 اتصل الآن</a>
-  <a href="https://wa.me/966507019346" onclick="closeMenu()" class="btn btn-wa" style="width:200px">💬 واتساب</a>
+  <a href="tel:0507019346" onclick="trackCall(this.href); closeMenu();" class="btn btn-gold" style="width:200px">📞 اتصل الآن</a>
+  <a href="https://wa.me/966507019346" onclick="trackWhatsApp(this.href); closeMenu();" class="btn btn-wa" style="width:200px">💬 واتساب</a>
 </div>
 
 <!-- الهيرو -->
@@ -475,7 +478,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
           متاح الآن — الرياض وجميع أحيائها
         </div>
         <br>
-        <a href="tel:0507019346" class="hero-phone">
+        <a href="tel:0507019346" onclick="trackCall(this.href)" class="hero-phone">
           <span>📞</span>
           <span>0507019346</span>
         </a>
@@ -487,10 +490,10 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
           خبرة +10 سنوات في الدهانات الداخلية والخارجية والترميم في الرياض. نلتزم بأعلى معايير الجودة وبأجود خامات جوتن والجزيرة مع ضمان تام.
         </p>
         <div class="hero-btns">
-          <a href="tel:0507019346" class="btn btn-gold">
+          <a href="tel:0507019346" onclick="trackCall(this.href)" class="btn btn-gold">
             <span>📞</span> اتصل مباشرة الآن
           </a>
-          <a href="https://wa.me/966507019346?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%88%D8%AA%D8%B3%D8%B9%D9%8A%D8%B1%20%D8%AF%D9%87%D8%A7%D9%86%D8%A7%D8%AA" class="btn btn-wa">
+          <a href="https://wa.me/966507019346?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%88%D8%AA%D8%B3%D8%B9%D9%8A%D8%B1%20%D8%AF%D9%87%D8%A7%D9%86%D8%A7%D8%AA" onclick="trackWhatsApp(this.href)" class="btn btn-wa">
             <span>💬</span> تواصل عبر واتساب
           </a>
         </div>
@@ -619,14 +622,14 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
         <p class="color-note">نساعدك مجاناً أثناء المعاينة في مطابقة درجات الإضاءة والألوان لتناسب أثاثك.</p>
         <div class="color-action">
           <span style="font-size:.85rem;color:var(--text2)">معاينة وعينات فورية</span>
-          <a href="tel:0507019346" class="btn btn-gold" style="padding:.5rem 1.1rem;font-size:.85rem">اطلب الآن</a>
+          <a href="tel:0507019346" onclick="trackCall(this.href)" class="btn btn-gold" style="padding:.5rem 1.1rem;font-size:.85rem">اطلب الآن</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- معرض الأعمال (صور واقعية مطابقة لوصف الرياض مع فني رجل) -->
+<!-- معرض الأعمال -->
 <section id="gallery">
   <div class="container">
     <div class="sec-head-row">
@@ -634,10 +637,10 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
         <div class="sec-label">أعمالنا</div>
         <h2 class="sec-title">نماذج من مشاريعنا بالرياض</h2>
       </div>
-      <a href="https://wa.me/966507019346" class="btn btn-ghost">طلب كتالوج الأعمال ←</a>
+      <a href="https://wa.me/966507019346" onclick="trackWhatsApp(this.href)" class="btn btn-ghost">طلب كتالوج الأعمال ←</a>
     </div>
     <div class="gallery-grid">
-      <!-- 1. فيلا عصرية ببروفايل أبيض ونخيل مطابقة تماماً لفلل شمال الرياض -->
+      <!-- 1. فيلا عصرية ببروفايل أبيض ونخيل شمال الرياض -->
       <div class="gi gi1">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1000&q=80" alt="دهان واجهات وبروفايل فلل الرياض" loading="lazy">
         <div class="gi-lbl">🏢 دهان واجهات وبروفايل — الرياض</div>
@@ -717,10 +720,10 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
     <div class="sec-label" style="justify-content:center">احصل على تسعيرة فورية</div>
     <h2>جاهز لتجديد منزلك بأفضل <span class="gold-text">سعر وضمان؟</span></h2>
     <p>اتصل بنا الآن واستفد من الخصم المتاح والمعاينة الفورية المجانية داخل الرياض</p>
-    <a href="tel:0507019346" class="phone-big">📞 0507019346</a>
+    <a href="tel:0507019346" onclick="trackCall(this.href)" class="phone-big">📞 0507019346</a>
     <div class="cta-btns">
-      <a href="tel:0507019346" class="btn btn-gold"><span>📲</span> اتصل الآن مباشرة</a>
-      <a href="https://wa.me/966507019346" class="btn btn-wa"><span>💬</span> راسلنا عبر واتساب</a>
+      <a href="tel:0507019346" onclick="trackCall(this.href)" class="btn btn-gold"><span>📲</span> اتصل الآن مباشرة</a>
+      <a href="https://wa.me/966507019346" onclick="trackWhatsApp(this.href)" class="btn btn-wa"><span>💬</span> راسلنا عبر واتساب</a>
     </div>
   </div>
 </section>
@@ -755,10 +758,10 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
 
 <!-- الأزرار العائمة المحسنة للجوال -->
 <div class="floating-actions-right">
-  <a href="https://wa.me/966507019346?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%88%D8%AA%D8%B3%D8%B9%D9%8A%D8%B1%20%D8%AF%D9%87%D8%A7%D9%86%D8%A7%D8%AA" class="fab-btn fab-whatsapp" aria-label="واتساب">
+  <a href="https://wa.me/966507019346?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%88%D8%AA%D8%B3%D8%B9%D9%8A%D8%B1%20%D8%AF%D9%87%D8%A7%D9%86%D8%A7%D8%AA" onclick="trackWhatsApp(this.href)" class="fab-btn fab-whatsapp" aria-label="واتساب">
     <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84s-3.64 2.4-5.82 2.4c-1.4 0-2.77-.35-4-1.01l-.29-.17-3.12.82.83-3.04-.19-.3A8.163 8.163 0 013.8 11.91c0-4.54 3.7-8.24 8.25-8.24zm4.8 11.75c-.26-.13-1.56-.77-1.81-.86-.24-.09-.42-.13-.6.13-.18.27-.69.86-.84 1.04-.16.18-.31.2-.57.07-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.31-1.56-1.46-1.82-.16-.27-.02-.41.11-.54.12-.12.26-.31.39-.46.13-.16.18-.27.26-.45.09-.18.04-.34-.02-.47-.07-.13-.6-1.44-.82-1.98-.22-.52-.44-.45-.6-.46-.16-.01-.34-.01-.52-.01-.18 0-.47.07-.72.34-.25.27-.95.93-.95 2.27s.97 2.64 1.11 2.82c.13.18 1.91 2.92 4.63 4.09.65.28 1.15.45 1.55.57.65.21 1.25.18 1.72.11.53-.08 1.56-.64 1.78-1.25.22-.62.22-1.15.15-1.26-.07-.12-.24-.19-.5-.32z"/></svg>
   </a>
-  <a href="tel:0507019346" class="fab-btn fab-call" aria-label="اتصال مباشر">
+  <a href="tel:0507019346" onclick="trackCall(this.href)" class="fab-btn fab-call" aria-label="اتصال مباشر">
     <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
   </a>
 </div>
@@ -780,7 +783,7 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // معالجة النموذج وتتبع إحالة النموذج المستقلة
+  // معالجة النموذج وتتبع إحالة النموذج المستقلة F_L
   const leadForm = document.getElementById('leadQuickForm');
   if(leadForm){
     leadForm.addEventListener('submit', function(e){
@@ -811,15 +814,17 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:3rem 1
         }
       }
 
-      // إرسال الإحالة لقوقل بلابل النموذج المستقل F_L
-      gtag('event', 'conversion', {
-        'send_to': G_ID + '/' + F_L,
-        'value': 120.0,
-        'currency': 'SAR',
-        'event_callback': function(){
-          doRedirect();
-        }
-      });
+      // إرسال الإحالة لقوقل بلابل النموذج المستقل
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': G_ID + '/' + F_L,
+          'value': 120.0,
+          'currency': 'SAR',
+          'event_callback': function(){
+            doRedirect();
+          }
+        });
+      }
 
       // مؤقت أمان في حال تأخر رد سيرفر قوقل
       setTimeout(doRedirect, 600);
